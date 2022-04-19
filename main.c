@@ -6,7 +6,7 @@
 /*   By: fiselann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 11:40:36 by fiselann          #+#    #+#             */
-/*   Updated: 2022/04/15 16:54:49 by fiselann         ###   ########.fr       */
+/*   Updated: 2022/04/19 14:30:09 by fiselann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -37,13 +37,13 @@ int	main(int argc, char **argv)
 			numb = ft_atoi(argv[i]);
 			/*if (numb == 0)
 				freelist;*/
-			new_item = lst_newitem(numb);
+			new_item = lst_new_item(numb);
 			if (!head)
 				head = new_item;
-			tail = lst_addback(tail, new_item);
+			tail = lst_add_back(tail, new_item);
 			i++;
 		}
-		printList(head);
+		lst_print(head);
 	}
 	else
 		printf("Error\n");

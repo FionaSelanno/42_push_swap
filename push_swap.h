@@ -13,7 +13,7 @@ typedef struct list_a
 } list_a;
 
 /***** list *****/
-list_a	lst_new_item(int value);
+list_a	*lst_new_item(int value);
 void	lst_add_back();
 void	lst_add_front();
 void 	lst_print(list_a *head);
