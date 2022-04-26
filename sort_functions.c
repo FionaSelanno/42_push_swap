@@ -17,20 +17,17 @@
 
 void	ft_exit()
 {
-	write(1, "Error\n", 6)
+	write(1, "Error\n", 6);
 	exit(0);
 }
 
-int	check_limits(int numb, int neg)
+int	check_limits(unsigned long long numb, int neg)
 {
-	long numb_temp;
-
-	numb_temp = (long)numb;
 	if (neg == 1 && numb > INT_MAX)
 	{
 		return (-1);
 	}
-	if (neg == -1 && numb > (INT_MAX + 1))
+	if (neg == -1 && numb > ((unsigned long long)INT_MAX + 1))
 		return (-1);
 	else
 		return (1);
@@ -38,14 +35,14 @@ int	check_limits(int numb, int neg)
 
 int ft_atoi(char *str)
 {
-	int numb;
+	unsigned long long numb;
 	int	i;
 	int	neg;
 
 	i = 0;
 	numb = 0;
 	neg = 1;
-	if (str[i] == '-');
+	if (str[i] == '-')
 	{
 		neg = -neg;
 		i++;
@@ -57,12 +54,12 @@ int ft_atoi(char *str)
 		if(str[i] >= '0' && str[i] <= '9')
 		{
 			numb = (numb * 10) + str[i] - 48;
+			if(check_limits(numb, neg) == -1)
+				ft_exit();
 			i++;
 		}
 	}
-	if (check_limits(numb, neg) != -1)
-		return (neg * numb);
-	else
-		exit(0);
+	//TODO: optimize this. Perhaps put it in the while loop above 
+	return (neg * numb);
 }
 

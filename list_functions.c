@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 list_a	*lst_new_item(int value)
 {
@@ -44,7 +45,7 @@ void lst_print(list_a *head)
  * This function takes a long time, when you have a long list. Because everytime you want to add a new item to the list, you have to traverse the list to get to the end. For timeout prevention, it is better to track tail off the list.
  */
 
-/* void lst_addback(list_a *head, list_a *item_to_add)
+ void lst_addback(list_a *head, list_a *item_to_add)
 {
 	list_a	*temp_head;
 
@@ -55,10 +56,9 @@ void lst_print(list_a *head)
 		temp_head = temp_head->next;
 	temp_head->next = item_to_add;
 }
-*/
 
 /* add item_to_add to the tail of the list and return the new tail */
-list_a	*lst_add_back(list_a *tail, list_a item_to_add)
+list_a	*lst_addback_tailreturn(list_a *tail, list_a *item_to_add)
 {
 	if (!tail)
 		tail = item_to_add;
@@ -69,8 +69,9 @@ list_a	*lst_add_back(list_a *tail, list_a item_to_add)
 
 void lst_add_front(list_a *head, list_a *item_to_add)
 {
-	list_a temp;
+	list_a *temp;
 	
+	temp = NULL;
 	temp->next = head;
 	temp = item_to_add;
 }

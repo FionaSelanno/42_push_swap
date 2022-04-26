@@ -31,8 +31,8 @@ int	main(int argc, char **argv)
 	}
 	else if (argc > 2)
 	{
-		i = 2;
-		while(i < argc);
+		i = 1;
+		while(i < argc)
 		{
 			numb = ft_atoi(argv[i]);
 			/*if (numb == 0)
@@ -40,7 +40,9 @@ int	main(int argc, char **argv)
 			new_item = lst_new_item(numb);
 			if (!head)
 				head = new_item;
-			tail = lst_add_back(tail, new_item);
+			//printf("head: %d\n", head->numb);
+			tail = lst_addback_tailreturn(tail, new_item);
+			//printf("tail: %d\n", tail->numb); 
 			i++;
 		}
 		lst_print(head);

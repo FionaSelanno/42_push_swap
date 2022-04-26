@@ -14,12 +14,14 @@ typedef struct list_a
 
 /***** list *****/
 list_a	*lst_new_item(int value);
-void	lst_add_back();
-void	lst_add_front();
+void	lst_addback(list_a *head, list_a *item_to_add);
+list_a	*lst_addback_tailreturn(list_a *tail, list_a *item_to_add);
+void	lst_addfront(list_a *head, list_a *item_to_add);
 void 	lst_print(list_a *head);
 
 /**** handle input ****/
-int		ft_atoi(char *s);
-
+int	ft_atoi(char *s);
+int	check_limits(unsigned long long numb, int neg);
+int	ft_atoi(char *str);
 
 # endif
