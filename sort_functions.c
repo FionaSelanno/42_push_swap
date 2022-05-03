@@ -33,33 +33,4 @@ int	check_limits(unsigned long long numb, int neg)
 		return (1);
 }
 
-int ft_atoi(char *str)
-{
-	unsigned long long numb;
-	int	i;
-	int	neg;
-
-	i = 0;
-	numb = 0;
-	neg = 1;
-	if (str[i] == '-')
-	{
-		neg = -neg;
-		i++;
-	}
-	while(str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			ft_exit();
-		if(str[i] >= '0' && str[i] <= '9')
-		{
-			numb = (numb * 10) + str[i] - 48;
-			if(check_limits(numb, neg) == -1)
-				ft_exit();
-			i++;
-		}
-	}
-	//TODO: optimize this. Perhaps put it in the while loop above 
-	return (neg * numb);
-}
 
