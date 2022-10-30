@@ -1,13 +1,19 @@
-SRCS =		main.c\
-			input_handler.c\
-			arr_functions.c\
-			list_functions.c\
-			sort_functions.c\
+SRCS =		input_handler.c\
+			list_handler.c\
+			list_handler2.c\
+			arr_handler.c\
+			small_sort.c\
 			big_sort.c\
-			sort_operations_1.c\
-			sort_operations_2.c\
-			sort_operations_3.c\
-			utils.c
+			ft_split.c\
+			operations_1.c\
+			operations_2.c\
+			operations_3.c\
+			utils.c\
+			utils2.c\
+			utils3.c\
+			utils4.c\
+			utils5.c\
+			main.c\
 
 OBJS = 		${SRCS:.c=.o}
 

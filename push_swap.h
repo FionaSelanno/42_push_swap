@@ -6,104 +6,122 @@
 /*   By: fiselann <fiselann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:01:22 by fiselann          #+#    #+#             */
-/*   Updated: 2022/10/04 09:39:39 by fiselann         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:30:36 by fiselann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <limits.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <limits.h>
 
-//TODO: rename structs with s_<name> and t_<name>
-typedef struct list_ints
+typedef struct s_node
 {
-	int	numb;
-	int cluster;
-	int counter;
-	struct list_ints	*next;
-} list_ints;
+	int				numb;
+	int				og;
+	int				cluster;
+	struct s_node	*next;
+}	t_node;
 
-//TODO: rename structs with s_<name> and t_<name>
-typedef struct data
+typedef struct s_data
 {
-	list_ints *head_a;
-	list_ints *head_b;
-	int len_a;
-	int rb_count;
-	int	ra_count;
-	int count;
-} data;
+	t_node	*a;
+	t_node	*b;
+	int		len_a;
+	int		rb_count;
+	int		ra_count;
+	int		count;
+	int		counter;
+}	t_data;
 
 /***** list *****/
-list_ints	*lst_new_item(int value, int i);
-list_ints	*lst_addback(list_ints *tail, list_ints *item_to_add);
-void		lst_addfront(list_ints **head, list_ints *item_to_add);
-size_t		lst_len(list_ints *head);
-void 		lst_print(list_ints *head, char c, char *info);
-//void		lst_freeall(list_ints **head);
-int			lst_create(int argc, list_ints **head);
-list_ints	*lst_gettail(list_ints *head);
-
-/**** array *****/
-int		*put_in_array(list_ints *head, int cluster);
-void	quick_sort_arr(int *arr, int low, int high);
-int		partition(int *arr, int low, int high);
-void	ft_printarray(int *arr, int len);
+t_node	*lst_new_item(int value, t_node **a, char **tab);
+void	lst_addback(t_node **lst, t_node *item_to_add);
+size_t	lst_len(t_node *head);
+void	lst_print(t_node *head, char c, char *info);
+int		create_lst(int argc, char **argv, t_node **head);
+void	add_to_lst(t_node **a, char *str, char **tab);
+t_node	*lst_tail(t_node *head);
 
 /**** handle input ****/
-int	check_limits(unsigned long long numb, int neg);
-int	ft_atoi(char *str);
-int	check_if_duplicates(list_ints *head_a);
+int		check_limits(unsigned long long numb, int neg);
+int		ft_atoi(char *str, t_node **a, char **tab);
+void	check_if_dups(t_node **a, int numb, char **tab);
+int		handle_one_arg(char *str, t_node **a);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_tabsize(char const *s, char c);
+void	*free_tab(char **tab, int n);
+void	*ft_filltab(char **tab, char const *s, char c);
+char	**ft_split(char const *s, char c);
+
+/**** handle array ****/
+int		*put_a_in_arr(t_node *a, int len);
+int		partition(int *arr, int low, int high);
+void	quick_sort(int *arr, int low, int high);
+void	set_newval(int *sorted, t_node *a, int len);
+void	change_lstval(t_node *a);
 
 /**** operations ****/
-void	sa(list_ints *head_a);
-void	sb(list_ints *head_b);
-void	ss(list_ints *head_a, list_ints *head_b);
-void	pa(list_ints **head_a, list_ints **head_b);
-void	pb(list_ints **head_b, list_ints **head_a);
-void	ra(list_ints **head_a);
-void	rb(list_ints **head_b);
-void	rr(list_ints **head_a, list_ints **head_b);
-void	rra(list_ints **head_a);
-void	rrb(list_ints **head_b);
-void	rrr(list_ints **head_a, list_ints **head_b);
+void	sa(t_node *a);
+void	sb(t_node *b);
+void	ss(t_node *a, t_node *b);
+void	pa(t_node **a, t_node **b);
+void	pb(t_node **b, t_node **a);
+void	shift_up_elem(t_node **head);
+void	ra(t_node **a);
+void	rb(t_node **b);
+void	rr(t_node **a, t_node **b);
+void	shift_down_elem(t_node **head);
+void	rra(t_node **a);
+void	rrb(t_node **b);
+void	rrr(t_node **a, t_node **b);
 
 /**** sort functions small ****/
-void	sort_two_a(data *data);
-void	sort_three_a(data *data);
-void	sort_four_five_a(data *data, int elem_count);
-int		find_position_in_list(list_ints *head_a, int numb_to_find);
-void	sort_by_position(list_ints **head_a, list_ints **head_b, size_t position);
+void	sort_two_a(t_data *data);
+void	sort_three_a(t_data *data);
+void	sort_four_five_a(t_data *data, int elem_count);
+int		find_position_in_list(t_data *data, int numb_to_find);
+void	sort_by_position(t_data *data, size_t position);
 
 /**** sort functions big ****/
-void	midpoint_a(data *data);
-void	midpoint_b(data *data);
-void	midpoint_sub_b(data *data, int cluster, int counter);
-void	check_a(data *data, int cluster, int counter);
-void	midpoint_sub_a(data *data, int cluster, int counter);
-void	big_sort(data *data);
-void	shift_to_b(int median, list_ints **head_a, size_t len);
-void	sort_b(data *data, int cluster, int counter);
+void	midpoint_a(t_data *data);
+void	midpoint_b(t_data *data);
+void	midpoint_sub_b(t_data *data, int cluster);
+void	midpoint_sub_a(t_data *data, int cluster, int len);
+void	big_sort(t_data *data);
+void	shift_to_b(int median, t_node **a, size_t len);
+void	push_to_a(t_data *data, int len);
 
 /**** utils ***/
-void	ft_exit(int error_numb);
+void	ft_exit(int error_numb, t_node **a, char **tab);
 void	ft_swap_numb(int *x, int *y);
-int		get_median(list_ints *head, int cluster);
-void	data_init(data *data, list_ints **head_a);
-void	set_data(data *data, int cluster, int counter);
-void	set_cluster(list_ints *head, int cluster);
-void	set_counter(list_ints *head, int cluster, int counter);
-int 	is_a_sorted(list_ints *head_a);
-int		is_cluster_a_sorted(list_ints *head_a, int cluster, int counter);
-int		is_cluster_b_sorted(list_ints *head_b, int cluster, int counter);
-int		get_len_cluster(list_ints *head, int cluster);
-int		get_len_counter(list_ints *head, int cluster, int counter);
+int		get_median(t_node *head, int cluster);
+void	data_init(t_data *data, t_node **a);
+void	set_data(t_data *data, int cluster);
+void	set_cluster(t_node *head, int cluster);
+int		is_a_sorted(t_node *a);
+int		is_cluster_a_sorted(t_node *a, int cluster);
+int		is_cluster_b_sorted(t_node *b, int cluster);
+int		get_len_cluster(t_node *head, int cluster);
+void	back_to_top(int count, char c, t_data *data);
+void	check_a(t_data *data, int cluster);
+void	sort_to_bottom_half(size_t count, t_data *data);
+size_t	ft_strlen(const char *str);
+void	ft_putchar(const char c);
+void	ft_putstr(const char *str);
+
+/*** utils optimized moves ***/
+t_node   *best_move(t_data *data, int top, int bottom);
+int  ix_first_top(t_node *head, int median);
+int ix_first_bottom(t_node *head, int median);
+void	choose_shiftup(int count, t_data *data, t_node *topush);
+void choose_shiftdown(int count, t_data *data, t_node *topush);
+t_node	*get_topush(int len, t_node *head);
 
 /**** main ***/
-void	pick_sort(int elem_count, data *data);
+void	pick_sort(int elem_count, t_data *data);
 
-# endif
+#endif
