@@ -6,7 +6,7 @@
 /*   By: fiselann <fiselann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:01:22 by fiselann          #+#    #+#             */
-/*   Updated: 2022/11/01 08:52:23 by fiselann         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:09:59 by fiselann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_data
 	int		len_a;
 	int		rb_count;
 	int		ra_count;
-	int		count;
 	int		counter;
 }	t_data;
 

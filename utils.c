@@ -6,7 +6,7 @@
 /*   By: fiselann <fiselann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:22:39 by fiselann          #+#    #+#             */
-/*   Updated: 2022/11/01 10:28:46 by fiselann         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:10:31 by fiselann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	data_init(t_data *data, t_node **a)
 	data->len_a = 0;
 	data->rb_count = 0;
 	data->ra_count = 0;
-	data->count = 0;
 	data->counter = 0;
 }
 

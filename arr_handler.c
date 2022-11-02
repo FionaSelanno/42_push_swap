@@ -6,7 +6,7 @@
 /*   By: fiselann <fiselann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:49:13 by fiselann          #+#    #+#             */
-/*   Updated: 2022/10/30 16:46:35 by fiselann         ###   ########.fr       */
+/*   Updated: 2022/11/02 09:41:06 by fiselann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	*put_a_in_arr(t_node *a, int len)
 	int	index;
 	int	*arr;
 
+	if (!a)
+		return (NULL);
 	arr = malloc(sizeof(int) * len);
-	if (!arr || !a)
+	if (!arr)
 		return (NULL);
 	index = 0;
 	while (index < len)
